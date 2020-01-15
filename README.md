@@ -16,9 +16,9 @@
 
 
 References:
-[1] Hufkens K. (2017) A Google Earth Engine time series subset script & library. DOI: 10.5281/zenodo.833789
-[2] Zhong, Liheng, Lina Hu, and Hang Zhou. "Deep learning based multi-temporal crop classification." Remote sensing of environment 221 (2019): 430-443.
+* [1] Hufkens K. (2017) A Google Earth Engine time series subset script & library. DOI: 10.5281/zenodo.833789
+* [2] Zhong, Liheng, Lina Hu, and Hang Zhou. "Deep learning based multi-temporal crop classification." Remote sensing of environment 221 (2019): 430-443.
 
 Acknowledgements:
-Bharathkumar Ramachandra (tnybny)
+* Bharathkumar Ramachandra (tnybny)
 
