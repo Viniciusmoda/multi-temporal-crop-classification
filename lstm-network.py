@@ -49,7 +49,7 @@ tr_path = str(config[parser_args.task]['TRAIN_FOLDER'])
 val_path = str(config[parser_args.task]['VAL_FOLDER'])
 num_classes = int(config[parser_args.task]['NUM_CLASSES'])
 #learning_rate = float(config[parser_args.task]['LEARNING_RATE'])
-learning_rates = [0.005, 0.001, 0.0005, 0.0001]
+learning_rates = [0.0001, 0.0005, 0.00001, 0.00005]
 num_epochs = int(config[parser_args.task]['NUM_EPOCHS'])
 #dropout_rate = float(config[parser_args.task]['DROPOUT_RATE']) 
 dropout_rates = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95]
@@ -73,7 +73,10 @@ print(grid_df)
         
 # parse through the generated grid and perform training separately
 # record all the values (loss, accuracy) etc
-# finally search through to find best result
+# finally search through to find best result in separate file
+# Also code is saved after finishing run for every pair of parameters to ensure that 
+# if the server kills the job, you can restart it from previous location
+# and not from starting
 
 for idx, row in grid_df.iterrows():
     if row['timestamp'] == 'None':
