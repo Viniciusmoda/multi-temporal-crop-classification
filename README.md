@@ -6,9 +6,13 @@
 
 * Paper reference: "Zhong, Liheng, Lina Hu, and Hang Zhou. "Deep learning based multi-temporal crop classification." Remote sensing of environment 221 (2019): 430-443."
 
-* ```cnn-network.py``` and ````lstm-network.py``` contain code for cnn and lstm described in the paper
+* ```cnn-network.py``` contains code for 1d cnn network described in the paper
 
-* Platform: Python3, Keras, Tensorflow
+* ```lstm-network.py``` contains code for lstm described in the paper
+
+* ```evaluate_pixel_based_methods.py``` contains code for XGBoost, SVM and RandomForest classification  
+
+* Platform: Python3, Keras, Tensorflow, Scikit-learn, rasterio
 
 * Use Hufkens et al. to download MODIS data.
 
