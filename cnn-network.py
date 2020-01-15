@@ -13,22 +13,23 @@ import tensorflow as tf
 import numpy as np
 np.random.seed(100)
 tf.set_random_seed(100)
-tf_config = tf.ConfigProto()
-tf_config.gpu_options.allow_growth = True
-tf.keras.backend.set_session(tf.Session(config=tf_config))
-from tensorflow.python.keras.layers import Input, Conv1D, Dense, Dropout, Concatenate, MaxPooling1D, Flatten
-from tensorflow.python.keras.optimizers import Adam
-from tensorflow.python.keras.models import Model
+#tf_config = tf.ConfigProto()
+#tf_config.gpu_options.allow_growth = True
+#tf.keras.backend.set_session(tf.Session(config=tf_config))
+from keras.layers import Input, Conv1D, Dense, Dropout, Concatenate, MaxPooling1D, Flatten
+from keras.optimizers import Adam
+from keras.models import Model
 from sklearn.metrics import classification_report
-from tensorflow.python.keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger, TensorBoard
+from keras.callbacks import ModelCheckpoint, EarlyStopping, CSVLogger, TensorBoard
 from time import time
 import configparser, argparse, datetime, json, os
 from data_generator import crop_generator 
-from tensorflow.python.keras.utils import plot_model
+from keras.utils import plot_model
 import socket
 import sys
 import pandas as pd
 import itertools
+import keras.backend as K
 
 start_time_n = datetime.datetime.now()
 
@@ -111,16 +112,19 @@ for idx, row in grid_df.iterrows():
         
         inception_concat = Concatenate(axis = 1, name='inception_concat')([inception_conv_1, inception_conv_2, inception_conv_3])
 
-        dropout_1 = Dropout(0.4, name='dropout_1')(inception_concat)
+        # b_size = K.shape(inception_conv_3)[0] # get current batch size
+        # Reference: https://stackoverflow.com/questions/46585069/keras-dropout-with-noise-shape
+
+        dropout_1 = Dropout(0.4, name='dropout_1', noise_shape=(inception_conv_3._keras_shape[0],1,128))(inception_concat) # dropout along temporal dimension
 
         conv_2 = Conv1D(128, 3, name='conv_2')(dropout_1)
 
         
-        dropout_2 = Dropout(0.4, name='dropout_2')(conv_2)
+        dropout_2 = Dropout(0.4, name='dropout_2', noise_shape=(inception_conv_3._keras_shape[0],1,128))(conv_2)
 
         conv_3 = Conv1D(256, 3, name='conv_3')(dropout_2)
 
-        dropout_3 = Dropout(0.4, name='dropout_3')(conv_3)
+        dropout_3 = Dropout(0.4, name='dropout_3', noise_shape=(inception_conv_3._keras_shape[0],1,256))(conv_3)
 
         flattened = Flatten()(dropout_3)
  

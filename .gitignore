@@ -128,6 +128,22 @@ dmypy.json
 # Pyre type checker
 .pyre/
 
+# shell files
+*.sh
+
 # text files
 *.csv
+*.out
 __pycache__/
+
+# ignore xgboost installation folder
+xgboost/
+
+# ignore other files
+evaluate_gp.py
+*.txt
+*.out
+*.sh
+
+# ignore data folder
+1_data/
