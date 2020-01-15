@@ -12,7 +12,7 @@
 
 * ```evaluate_pixel_based_methods.py``` contains code for XGBoost, SVM and RandomForest classification  
 
-* Platform: Python3, Keras, Tensorflow, Scikit-learn, rasterio
+* Platform: Python3, Keras, Tensorflow, Scikit
 
 * Use Hufkens et al. to download MODIS data.
 
