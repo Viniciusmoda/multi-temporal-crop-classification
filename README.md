@@ -10,7 +10,9 @@
 
 * ```evaluate_pixel_based_methods.py``` contains code for XGBoost, SVM and RandomForest classification  
 
-* Platform: Python3, Keras, Tensorflow, Scikit
+* ```data_generator.py``` assumes that each time series is stored as a separate csv with the NDVI values stored under the column 'NDVI'. It does nearest neighbor interpolation to fix missing values.
+
+* Python version and required packages: Python3, Keras, Tensorflow, Scikit
 
 * Use Hufkens et al. to download MODIS data.
 
