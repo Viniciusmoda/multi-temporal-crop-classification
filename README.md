@@ -1,4 +1,4 @@
-# Multi-Temporal-Crop-Classification (work-in-progress)
+# Multi-Temporal-Crop-Classification using Deep Learning
 
 * Recreating code for the paper "Deep Learning Based Multi-Temporal Crop Classification"
 
