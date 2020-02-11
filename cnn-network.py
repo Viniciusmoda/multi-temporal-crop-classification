@@ -52,8 +52,6 @@ num_classes = int(config[parser_args.task]['NUM_CLASSES'])
 #learning_rate = float(config[parser_args.task]['LEARNING_RATE'])
 learning_rates = [0.0001, 0.0005, 0.00001, 0.00005]
 num_epochs = int(config[parser_args.task]['NUM_EPOCHS'])
-#dropout_rate = float(config[parser_args.task]['DROPOUT_RATE']) 
-dropout_rates = [0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7, 0.8, 0.9, 0.95]
 epsilon = float(config[parser_args.task]['EPSILON'])
 plot_path = str(config['plotting']['PLOT_FOLDER'])
 measures_folder = str(config['plotting']['MEASURE_FOLDER'])
@@ -65,8 +63,8 @@ if os.path.exists(grid_file):
     grid_df = pd.read_csv(grid_file)
 
 else:
-    param_grid = list(itertools.product(learning_rates, dropout_rates))
-    grid_df = pd.DataFrame(param_grid, columns = ['lr', 'd'])
+    param_grid = list(itertools.product(learning_rates))
+    grid_df = pd.DataFrame(param_grid, columns = ['lr'])
     grid_df['timestamp'] = 'None'
 
 print(grid_df)
@@ -82,7 +80,6 @@ print(grid_df)
 for idx, row in grid_df.iterrows():
     if row['timestamp'] == 'None':
         learning_rate = row['lr']
-        dropout_rate = row['d']
         curr_time_n = datetime.datetime.now()
         curr_time = curr_time_n.strftime("%Y-%m-%d %H:%M:%S")
         time_passed_since_start = curr_time_n - start_time_n
