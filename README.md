@@ -8,7 +8,7 @@
 
 * ```lstm-network.py``` contains code for lstm described in the paper
 
-* ```evaluate_pixel_based_methods.py``` contains code for XGBoost, SVM and RandomForest classification  
+* ```evaluate_baselines.py``` contains code for XGBoost, SVM and RandomForest classification  
 
 * ```data_generator.py``` assumes that each time series is stored as a separate csv with the NDVI values stored under the column 'NDVI'. It does nearest neighbor interpolation to fix missing values.
 
