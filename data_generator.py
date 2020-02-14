@@ -91,7 +91,7 @@ def preprocess_test_img(ts_path, class_names, num_classes, epsilon, mode):
     """
     return_x_ts = []
     return_y = []
-    curr_class = int(os.path.basename(os.path.dirname(image_path)))
+    curr_class = int(os.path.basename(os.path.dirname(ts_path)))
     curr_ts = pd.read_csv(ts_path)
     if curr_ts.empty:
         print("{} seems to be empty: pls check ".format(ts_path))
