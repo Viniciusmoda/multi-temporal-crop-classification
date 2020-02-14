@@ -131,30 +131,26 @@ def crop_generator(input_path, batch_size=32, mode="train", num_classes =6, epsi
         curr_idx += batch_size 
         yield (ts, labels)
 
-def test_crop_generator(input_path, batch_size=1, mode="test", num_classes =6, epsilon = 0, resize_params = (224, 224), do_shuffle=True):	
+def test_crop_generator(input_path, batch_size=1, mode="test", num_classes =6, epsilon = 0, resize_params = (224, 224), do_shuffle=True):
     """
     Simple data generator that reads all timeseries based on mode, picks up corresponding time series, returns entire list
     """
     data_path = os.path.join(input_path, mode)
-    all_images = glob.glob(os.path.join(data_path, "**/*.jpg"))
-    print("Found {} files for {}".format(len(all_images), mode))
+    all_ts = glob.glob(os.path.join(data_path, "**/*.csv"))
+    print("Found {} files for {}".format(len(all_ts), mode))
     if do_shuffle:
-        shuffle(all_images)
+        shuffle(all_ts)
     curr_idx = 0
-    while curr_idx < len(all_images):
+    while curr_idx < len(all_ts):
         # create random batches first
         #batch_paths = np.random.choice(a= all_images, size = batch_size)
         # initialize our batches of images and labels
         #print(all_images[curr_idx])
-        imgs = []
         ts = []
-        labels = []       
-        curr_batch = all_images[curr_idx]
-        _, ts, labels = preprocess_test_img(image_path= curr_batch, class_names = [0,1,2,3,4,5], num_classes = num_classes, epsilon = epsilon, resize_width_and_height=resize_params, mode=mode) 
-        #imgs = np.array(imgs)
+        labels = []
+        curr_batch = all_ts[curr_idx]
+        ts, labels = preprocess_test_img(ts_path= curr_batch, class_names = [0,1,2,3,4,5], num_classes = num_classes, epsilon = epsilon, mode=mode)
         ts = np.array(ts)
         labels = np.array(labels)
         curr_idx += batch_size
         yield (ts, labels, curr_batch)
-
-
